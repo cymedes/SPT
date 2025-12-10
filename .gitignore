@@ -1,0 +1,22 @@
+@"
+# Node
+node_modules/
+dist/
+build/
+
+# Python
+.venv/
+env/
+__pycache__/
+*.pyc
+
+# IDE / system
+.vscode/
+.idea/
+.DS_Store
+*.log
+
+# dependency folders / builds
+npm-debug.log*
+yarn-error.log*
+"@ | Set-Content -Path .gitignore -Encoding UTF8

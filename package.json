@@ -1,0 +1,51 @@
+{
+  "name": "subaru-pricing-tool",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "db:up": "docker compose -f docker-compose.prisma.yml up -d",
+    "db:down": "docker compose -f docker-compose.prisma.yml down",
+    "migrate:dev": "prisma migrate dev --name init_subaru_schema --config prisma/prisma.config.js",
+    "build": "next build",
+    "start": "next start",
+    "start:nest": "ts-node src/main.ts",
+    "start:nest:dev": "nodemon --exec ts-node src/main.ts",
+    "start:all": "concurrently \"npm run start:nest\" \"npm run dev\""
+  },
+  "dependencies": {
+    "@nestjs/common": "^11.1.9",
+    "@nestjs/core": "^11.1.9",
+    "@nestjs/platform-express": "^11.1.9",
+    "@prisma/adapter-pg": "^7.0.1",
+    "@prisma/client": "^5.15.0",
+    "@prisma/internals": "^7.0.1",
+    "@tanstack/react-query": "^5.90.11",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.3",
+    "framer-motion": "^12.23.25",
+    "next": "^14.2.33",
+    "prisma": "^5.15.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "reflect-metadata": "^0.2.2",
+    "rxjs": "^7.8.2"
+  },
+  "devDependencies": {
+    "@nestjs/cli": "^11.0.14",
+    "@nestjs/schematics": "^11.0.9",
+    "@types/node": "^20.19.25",
+    "@types/react": "19.2.7",
+    "autoprefixer": "^10.4.17",
+    "concurrently": "^9.2.1",
+    "nodemon": "^3.1.11",
+    "postcss": "^8.4.32",
+    "tailwindcss": "^3.4.1",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.9.3"
+  },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
+  }
+}

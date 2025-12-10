@@ -1,0 +1,62 @@
+﻿@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* === Subaru Garage Mode === */
+:root {
+  --subaru-dark-blue: #001a33;
+  --subaru-neon-blue: #00b4ff;
+  --subaru-gray: #1a1a1a;
+  --subaru-silver: #cccccc;
+}
+
+body {
+  @apply bg-gradient-to-br from-[var(--subaru-dark-blue)] via-black to-gray-900 text-gray-200 font-sans min-h-screen transition-colors duration-500;
+}
+
+header {
+  @apply bg-[var(--subaru-dark-blue)] border-b border-blue-500/40 text-white py-4 shadow-xl flex justify-center items-center relative;
+}
+
+header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--subaru-neon-blue), transparent, var(--subaru-neon-blue));
+  opacity: 0.6;
+}
+
+header img {
+  @apply h-10 w-auto mr-3 drop-shadow-[0_0_10px_var(--subaru-neon-blue)];
+}
+
+main {
+  @apply flex flex-col items-center justify-center py-10 px-4;
+}
+
+.card {
+  @apply bg-[#111827]/80 backdrop-blur-sm border border-blue-500/20 shadow-[0_0_20px_rgba(0,180,255,0.1)] rounded-2xl p-8 w-full max-w-2xl transition duration-500;
+}
+
+.btn-subaru {
+  @apply bg-[var(--subaru-neon-blue)] text-black font-semibold rounded-lg px-6 py-2 hover:bg-sky-400 shadow-[0_0_15px_var(--subaru-neon-blue)] hover:shadow-[0_0_25px_var(--subaru-neon-blue)] transition;
+}
+
+label {
+  @apply text-sm font-semibold text-gray-300 mb-1;
+}
+
+select {
+  @apply bg-gray-900 text-gray-200 border border-gray-700 rounded-lg p-2 focus:ring focus:ring-sky-400;
+}
+
+select:focus {
+  box-shadow: 0 0 10px var(--subaru-neon-blue);
+}
+
+p, h1, h2, h3 {
+  text-shadow: 0 0 5px rgba(0, 180, 255, 0.3);
+}

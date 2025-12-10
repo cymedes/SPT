@@ -1,0 +1,67 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Model {
+  id           Int           @id @default(autoincrement())
+  name         String        @unique
+  description  String?
+  generations  Generation[]
+}
+
+model Generation {
+  id          Int         @id @default(autoincrement())
+  name        String
+  model       Model       @relation(fields: [modelId], references: [id])
+  modelId     Int
+  engines     Engine[]
+}
+
+model Engine {
+  id            Int            @id @default(autoincrement())
+  name          String
+  generation    Generation      @relation(fields: [generationId], references: [id])
+  generationId  Int
+  transmissions Transmission[]
+}
+
+model Transmission {
+  id        Int      @id @default(autoincrement())
+  name      String
+  engine    Engine    @relation(fields: [engineId], references: [id])
+  engineId  Int
+}
+
+model Part {
+  id        Int     @id @default(autoincrement())
+  name      String
+  priceNet  Float
+  services  ServicePart[]
+}
+
+model Service {
+  id         Int           @id @default(autoincrement())
+  name       String
+  laborTime  Float
+  parts      ServicePart[]
+}
+
+model ServicePart {
+  id         Int        @id @default(autoincrement())
+  service    Service    @relation(fields: [serviceId], references: [id])
+  serviceId  Int
+  part       Part       @relation(fields: [partId], references: [id])
+  partId     Int
+  quantity   Int
+}
+
+model Setting {
+  id    Int     @id @default(autoincrement())
+  key   String  @unique
+  value String
+}
